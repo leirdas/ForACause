@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Court = require('../models/court.js');
+const Task = require('../models/task.js');
 
 const cities = require('./cities');
 const { descriptors, places } = require('./seedHelpers');
@@ -18,10 +18,10 @@ mongoose.connect('mongodb://localhost:27017/hoopzone', {
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
-    await Court.deleteMany({});
+    await Task.deleteMany({});
     for (let i = 0; i < 200; i++) {
         const randomNum = Math.floor((Math.random() * 1000) + 1);
-        const newCourt = new Court({
+        const newTask = new Task({
             author: '626f77471c4b842f0196b5a1',
             title: `${sample(descriptors)}, ${sample(places)}`,
             location: `${cities[randomNum].city}, ${cities[randomNum].state}`,
@@ -44,7 +44,7 @@ const seedDB = async () => {
                 }
             ]
         });
-        await newCourt.save();
+        await newTask.save();
     }
 }
 

@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 
 const ExpressError = require('./utilities/ExpressError.js');
 
-const courtRoutes = require('./routes/courts.js');
+const taskRoutes = require('./routes/tasks.js');
 const reviewRoutes = require('./routes/reviews.js');
 const userRoutes = require('./routes/user.js');
 
@@ -26,7 +26,7 @@ const User = require('./models/user.js');
 
 const mongoSanitize = require('express-mongo-sanitize');
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/hoopzone';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/foracause';
 
 const MongoDBStore = require("connect-mongo");
 
@@ -99,8 +99,8 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.use('/courts', courtRoutes);
-app.use('/courts/:id/reviews', reviewRoutes);
+app.use('/tasks', taskRoutes);
+app.use('/tasks/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get('*', (req, res, next) => {
@@ -117,7 +117,7 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     try {
-        console.log(`Listening on PORT ${port}}`);
+        console.log(`Listening on PORT ${port}`);
     } catch (err) {
         console.log(err);
     }

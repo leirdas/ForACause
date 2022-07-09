@@ -1,6 +1,6 @@
 const ExpressError = require('./utilities/ExpressError.js');
-const { courtSchema, reviewSchema } = require('./schema.js');
-const Court = require('./models/court.js');
+const { taskSchema, reviewSchema } = require('./schema.js');
+const Task = require('./models/task.js');
 const Review = require('./models/review.js');
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -13,7 +13,7 @@ module.exports.isLoggedIn = (req, res, next) => {
 }
 
 module.exports.validateData = (req, res, next) => {
-    const { error } = courtSchema.validate(req.body);
+    const { error } = taskSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(",");
         throw new ExpressError(msg, 400);
@@ -24,10 +24,10 @@ module.exports.validateData = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
-    const verifyCourt = await Court.findById(id);
-    if (!verifyCourt.author.equals(req.user._id)) {
+    const verifyTask = await Task.findById(id);
+    if (!verifyTask.author.equals(req.user._id)) {
         req.flash('error', "You do not have permission to do that.");
-        return res.redirect(`/courts/${id}`);
+        return res.redirect(`/tasks/${id}`);
     }
     next();
 }
@@ -37,7 +37,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     const verifyReview = await Review.findById(reviewId);
     if (!verifyReview.author.equals(req.user._id)) {
         req.flash('error', "You do not have permission to do that.");
-        return res.redirect(`/courts/${id}`);
+        return res.redirect(`/tasks/${id}`);
     }
     next();
 }

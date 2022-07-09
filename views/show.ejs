@@ -3,22 +3,22 @@
 
     <div class="row">
         <div class="col-6">
-            <div id="courtCarousel" class="carousel slide" data-ride="carousel">
+            <div id="taskCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <% foundCourt.images.forEach((img, i)=> { %>
+                    <% foundTask.images.forEach((img, i)=> { %>
                         <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
                             <img src="<%= img.url%>" class="d-block w-100" alt="">
                         </div>
                         <% }) %>
 
                 </div>
-                <% if(foundCourt.images.length> 1) {%>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#courtCarousel"
+                <% if(foundTask.images.length> 1) {%>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#taskCarousel"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#courtCarousel"
+                    <button class="carousel-control-next" type="button" data-bs-target="#taskCarousel"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
@@ -28,24 +28,24 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <%= foundCourt.title%>
+                        <%= foundTask.title%>
                     </h5>
                     <p class="card-text">
-                        <%= foundCourt.description%>
+                        <%= foundTask.description%>
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">
-                        <%= foundCourt.location%>
+                        <%= foundTask.location%>
                     </li>
                     <li class="list-group-item text-muted">
-                        Submitted by: <%= foundCourt.author.username%>
+                        Submitted by: <%= foundTask.author.username%>
                     </li>
                 </ul>
-                <% if( currentUser && foundCourt.author.equals(currentUser._id)) {%>
+                <% if( currentUser && foundTask.author.equals(currentUser._id)) {%>
                     <div class="card-body">
-                        <a class="card-link btn btn-info" href="/courts/<%=foundCourt._id%>/edit">Edit</a>
-                        <form class="d-inline" action="/courts/<%=foundCourt._id%>?_method=DELETE" method="POST">
+                        <a class="card-link btn btn-info" href="/tasks/<%=foundTask._id%>/edit">Edit</a>
+                        <form class="d-inline" action="/tasks/<%=foundTask._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
@@ -62,7 +62,7 @@
             <div class="col-6 w-100 mt-3">
                 <% if (currentUser) { %>
                     <h2>Leave a Review</h2>
-                    <form action="/courts/<%=foundCourt._id%>/reviews" method="POST" class="mb-3 validatedForm"
+                    <form action="/tasks/<%=foundTask._id%>/reviews" method="POST" class="mb-3 validatedForm"
                         novalidate>
                         <fieldset class="starability-basic mt-4">
                             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
@@ -89,7 +89,7 @@
                         <button class="btn btn-success">Submit</button>
                     </form>
                     <% } %>
-                        <% for(let review of foundCourt.reviews) { %>
+                        <% for(let review of foundTask.reviews) { %>
                             <div class="card mb-3 ">
                                 <div class="card-body">
                                     <h5 class="card-title">
@@ -102,7 +102,7 @@
                                     </p>
                                     <% if( currentUser && review.author.equals(currentUser._id)) {%>
                                         <form
-                                            action="/courts/<%=foundCourt._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                            action="/tasks/<%=foundTask._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
                                             <button class="btn btn-sm btn-danger">Delete</button>
                                         </form>
@@ -115,7 +115,7 @@
 
         <script>
             const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-            const foundCourt = <%- JSON.stringify(foundCourt) %>
+            const foundTask = <%- JSON.stringify(foundTask) %>
         </script>
 
         <script src="/javascripts/showPageMap.js"></script>

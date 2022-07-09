@@ -11,8 +11,8 @@ module.exports.registerUser = async (req, res) => {
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) next(err);
-            req.flash('success', "Welcome to Hoopzone!");
-            res.redirect('/courts');
+            req.flash('success', "Welcome to ForACause!");
+            res.redirect('/tasks');
         });
     } catch (e) {
         req.flash('error', e.message);
@@ -25,8 +25,8 @@ module.exports.renderLoginForm = (req, res) => {
 };
 
 module.exports.loginUser = (req, res) => {
-    req.flash('success', "Welcome Back to Hoopzone!");
-    const redirectUrl = req.session.returnTo || '/courts';
+    req.flash('success', "Welcome Back to ForACause!");
+    const redirectUrl = req.session.returnTo || '/tasks';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 };
@@ -34,5 +34,5 @@ module.exports.loginUser = (req, res) => {
 module.exports.logoutUser = (req, res) => {
     req.logout();
     req.flash('success', "Goodbye!");
-    res.redirect('/courts');
+    res.redirect('/tasks');
 };

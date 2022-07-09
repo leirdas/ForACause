@@ -1,14 +1,14 @@
 <% layout('../layouts/boilerplate') %>
 
     <div class="row">
-        <h1 class="text-center">New Court</h1>
+        <h1 class="text-center">New Task</h1>
         <div class="col-6 offset-3">
-            <form method="POST" action="/courts/<%= foundCourt._id %>?_method=PUT" class="validatedForm" novalidate
+            <form method="POST" action="/tasks/<%= foundTask._id %>?_method=PUT" class="validatedForm" novalidate
                 enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="court[title]"
-                        value="<%= foundCourt.title %>" required>
+                    <input class="form-control" type="text" id="title" name="task[title]"
+                        value="<%= foundTask.title %>" required>
                 </div>
                 <div class="valid-feedback">
                     Looks good!
@@ -16,8 +16,8 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="court[location]"
-                        value="<%= foundCourt.location %>" required>
+                    <input class="form-control" type="text" id="location" name="task[location]"
+                        value="<%= foundTask.location %>" required>
                 </div>
                 <div class="valid-feedback">
                     Looks good!
@@ -25,8 +25,8 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="court[description]"
-                        required><%= foundCourt.description %></textarea>
+                    <textarea class="form-control" type="text" id="description" name="task[description]"
+                        required><%= foundTask.description %></textarea>
                 </div>
                 <div class="valid-feedback">
                     Looks good!
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <% foundCourt.images.forEach(function(img, i) { %>
+                    <% foundTask.images.forEach(function(img, i) { %>
                         <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
                         <div class="form-check-inline">
                             <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
@@ -48,9 +48,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <button class="btn btn-success">Update Court Details</button>
+                    <button class="btn btn-success">Update Task Details</button>
                 </div>
             </form>
-            <a href="/courts">All Courts</a>
+            <a href="/tasks">All Tasks</a>
         </div>
     </div>

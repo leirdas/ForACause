@@ -23,8 +23,8 @@ const extension = (joi) => ({
 
 const Joi = BaseJoi.extend(extension);
 
-module.exports.courtSchema = Joi.object({
-    court: Joi.object({
+module.exports.taskSchema = Joi.object({
+    task: Joi.object({
         title: Joi.string().required().escapeHTML(),
         location: Joi.string().required().escapeHTML(),
         description: Joi.string().required().escapeHTML(),

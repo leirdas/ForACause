@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'hoopzone',
+        folder: 'foracause',
         allowedFormats: ['jpeg', 'png', 'jpg']
     }
 });
