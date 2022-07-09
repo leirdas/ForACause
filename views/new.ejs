@@ -1,43 +1,90 @@
 <% layout('../layouts/boilerplate') %>
 
-    <div class="row">
-        <h1 class="text-center">New Opportunities</h1>
-        <div class="col-6 offset-3">
-            <form action="/opportunities" method="POST" class="validatedForm" novalidate enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="opportunity[title]" required>
-                </div>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="/stylesheets/new.css" />
+</head>
 
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="opportunity[location]" required>
-                </div>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+<body>
+        <div class="container py-3 opacity-75.5">
+            <div class="justify-content-center row">
+                <div class="col-xl-9">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="col-6 offset-3">
+                            <h1 class="text-center fw-bold">New Opportunities</h1>
+                            <hr>
+                            <form
+                                action="/opportunities"
+                                method="POST"
+                                class="validatedForm"
+                                novalidate
+                                enctype="multipart/form-data">
+                                <div class="mb-3">
+                                <label class="form-label" for="title">Title</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    id="title"
+                                    placeholder="eg.  Weekly Volunteering at an Elderly's Home"
+                                    name="opportunity[title]"
+                                    required/>
+                                </div>
+                                <div class="valid-feedback">Looks good!</div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="opportunity[description]"
-                        required></textarea>
-                </div>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                                <div class="mb-3">
+                                <label class="form-label" for="location">Location</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    id="location"
+                                    placeholder="eg.  456 Jurong East Street, Singapore 123456"
+                                    name="opportunity[location]"
+                                    required/>
+                                </div>
+                                <div class="valid-feedback">Looks good!</div>
 
-                <div class="mb-3">
-                    <label for="image" class="form-label">Add Images</label>
-                    <input class="form-control" type="file" id="image" name="image" multiple />
-                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="description">Description</label>
+                                    <textarea
+                                    class="form-control"
+                                    type="text"
+                                    id="description"
+                                    rows="5rem"
+                                    cols="1rem"
+                                    name="opportunity[description]"
+                                    required>
+                                    </textarea>
+                                </div>
+                                <div class="valid-feedback">Looks good!</div>
 
-                <div class="mb-3">
-                    <button class="btn btn-info">Add Opportunity Details</button>
+                                <div class="mb-3">
+                                <label for="image" class="form-label">Add Images</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="image"
+                                    name="image"
+                                    multiple/>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button class="rounded-pill btn btn-outline-danger fw-bold">Create New Opportunity</button>
+                                </div>
+                                <hr>
+                                <div class="d-grid">
+                                    <a href="/opportunities" class="rounded-pill btn btn-danger fw-bold">Back to Opportunities</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </form>
-            <a href="/opportunities">All Opportunities</a>
+            </div>
         </div>
     </div>
+</body>
