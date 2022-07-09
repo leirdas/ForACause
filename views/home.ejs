@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For A Cause</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoopzone</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/home.css">
-</head>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/app.css">
 
-<body class="d-flex text-center text-white bg-dark">
+  </head>
+
+  <body class="d-flex text-center text-white bg-dark">
+    
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-left mb-0">ForACause</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="/opportunities">Opportunities</a>
-                    <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Register</a>
-                    <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
-                    <% } %>
-                </nav>
-            </div>
-        </header>
-        <main class="px-3">
-            <h1>Hoopzone</h1>
-            <p class="lead"> Welcome to Hoopzone! <br> Find an opportunity. Share an Opportunity. Review an Opportunity.</p>
-            <a href="/opportunities" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">View All
-                Opportunities</a>
-        </main>
-
-        <footer class="mt-auto text-white-50">
-            <p>&copy; ForACause 2022 </p>
-        </footer>
-
-
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-left mb-0">ForACause</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-right">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="/opportunities">Opportunities</a>
+            <% if(!currentUser) { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } else { %>
+            <a class="nav-link" href="/logout">Logout</a>
+            <% } %>
+          </nav>
+        </div>
+      </header>
+      
+      <main class="px-3">
+        <h1 class="description">Find A Cause</h1>
+        <p>
+          What are you waiting for? Volunteer Today to Give Back to Society!
+        </p>
+        <div id="cluster-map" class="mb-3"></div>
+        <a
+          href="/opportunities"
+          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white mb-2"
+          >View All Opportunities</a
+        >
+      </main>
+      <!-- <footer class="mt-auto text-white-50">
+        <p>&copy; ForACause 2022</p>
+      </footer> -->
     </div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
-</body>
+    <script>
+      const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+      const opportunities = { features: <%- JSON.stringify(allOpportunities) %>}
+    </script>
 
+    <script src="/javascripts/clusterMap.js"></script>
+  </body>
 </html>
