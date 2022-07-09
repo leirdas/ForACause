@@ -1,0 +1,50 @@
+<% layout('../layouts/boilerplate')%>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/register.css">
+</head>
+
+<body>
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="card-title mb-3 fw-bold">Register</h1>
+                        <form action="/register" method="POST" class="validatedForm" novalidate>
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Username</label>
+                                <input class="form-control" type="text" id="username" style="height: 50px" placeholder="eg. tom.williams" name="username" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input class="form-control" type="email" id="email" style="height: 50px" placeholder="eg. tomwilliams@snailmail.com" name="email" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input class="form-control" type="password" id="password" style="height: 50px" placeholder="Password123@#!" name="password" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="rounded-pill btn btn-danger fw-bold">Register</button>
+                            </div>
+                            <div class="text-right card-text">
+                                <a href="/login">Have an Account?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
