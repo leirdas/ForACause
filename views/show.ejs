@@ -3,22 +3,22 @@
 
     <div class="row">
         <div class="col-6">
-            <div id="taskCarousel" class="carousel slide" data-ride="carousel">
+            <div id="opportunityCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <% foundTask.images.forEach((img, i)=> { %>
+                    <% foundOpportunity.images.forEach((img, i)=> { %>
                         <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
                             <img src="<%= img.url%>" class="d-block w-100" alt="">
                         </div>
                         <% }) %>
 
                 </div>
-                <% if(foundTask.images.length> 1) {%>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#taskCarousel"
+                <% if(foundOpportunity.images.length> 1) {%>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#opportunityCarousel"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#taskCarousel"
+                    <button class="carousel-control-next" type="button" data-bs-target="#opportunityCarousel"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
@@ -28,24 +28,24 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <%= foundTask.title%>
+                        <%= foundOpportunity.title%>
                     </h5>
                     <p class="card-text">
-                        <%= foundTask.description%>
+                        <%= foundOpportunity.description%>
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">
-                        <%= foundTask.location%>
+                        <%= foundOpportunity.location%>
                     </li>
                     <li class="list-group-item text-muted">
-                        Submitted by: <%= foundTask.author.username%>
+                        Submitted by: <%= foundOpportunity.author.username%>
                     </li>
                 </ul>
-                <% if( currentUser && foundTask.author.equals(currentUser._id)) {%>
+                <% if( currentUser && foundOpportunity.author.equals(currentUser._id)) {%>
                     <div class="card-body">
-                        <a class="card-link btn btn-info" href="/tasks/<%=foundTask._id%>/edit">Edit</a>
-                        <form class="d-inline" action="/tasks/<%=foundTask._id%>?_method=DELETE" method="POST">
+                        <a class="card-link btn btn-info" href="/opportunities/<%=foundOpportunity._id%>/edit">Edit</a>
+                        <form class="d-inline" action="/opportunities/<%=foundOpportunity._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
@@ -62,7 +62,7 @@
             <div class="col-6 w-100 mt-3">
                 <% if (currentUser) { %>
                     <h2>Leave a Review</h2>
-                    <form action="/tasks/<%=foundTask._id%>/reviews" method="POST" class="mb-3 validatedForm"
+                    <form action="/opportunities/<%=foundOpportunity._id%>/reviews" method="POST" class="mb-3 validatedForm"
                         novalidate>
                         <fieldset class="starability-basic mt-4">
                             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
@@ -89,7 +89,7 @@
                         <button class="btn btn-success">Submit</button>
                     </form>
                     <% } %>
-                        <% for(let review of foundTask.reviews) { %>
+                        <% for(let review of foundOpportunity.reviews) { %>
                             <div class="card mb-3 ">
                                 <div class="card-body">
                                     <h5 class="card-title">
@@ -102,7 +102,7 @@
                                     </p>
                                     <% if( currentUser && review.author.equals(currentUser._id)) {%>
                                         <form
-                                            action="/tasks/<%=foundTask._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                            action="/opportunities/<%=foundOpportunity._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
                                             <button class="btn btn-sm btn-danger">Delete</button>
                                         </form>
@@ -115,7 +115,7 @@
 
         <script>
             const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-            const foundTask = <%- JSON.stringify(foundTask) %>
+            const foundOpportunity = <%- JSON.stringify(foundOpportunity) %>
         </script>
 
         <script src="/javascripts/showPageMap.js"></script>

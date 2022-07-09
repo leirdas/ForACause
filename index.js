@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 
 const ExpressError = require('./utilities/ExpressError.js');
 
-const taskRoutes = require('./routes/tasks.js');
+const opportunityRoutes = require('./routes/opportunities.js');
 const reviewRoutes = require('./routes/reviews.js');
 const userRoutes = require('./routes/user.js');
 
@@ -99,8 +99,8 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.use('/tasks', taskRoutes);
-app.use('/tasks/:id/reviews', reviewRoutes);
+app.use('/opportunities', opportunityRoutes);
+app.use('/opportunities/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get('*', (req, res, next) => {

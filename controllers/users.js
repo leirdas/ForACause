@@ -12,7 +12,7 @@ module.exports.registerUser = async (req, res) => {
         req.login(registeredUser, err => {
             if (err) next(err);
             req.flash('success', "Welcome to ForACause!");
-            res.redirect('/tasks');
+            res.redirect('/opportunities');
         });
     } catch (e) {
         req.flash('error', e.message);
@@ -26,7 +26,7 @@ module.exports.renderLoginForm = (req, res) => {
 
 module.exports.loginUser = (req, res) => {
     req.flash('success', "Welcome Back to ForACause!");
-    const redirectUrl = req.session.returnTo || '/tasks';
+    const redirectUrl = req.session.returnTo || '/opportunities';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 };
@@ -34,5 +34,5 @@ module.exports.loginUser = (req, res) => {
 module.exports.logoutUser = (req, res) => {
     req.logout();
     req.flash('success', "Goodbye!");
-    res.redirect('/tasks');
+    res.redirect('/opportunities');
 };
